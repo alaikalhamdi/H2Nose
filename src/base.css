@@ -39,6 +39,10 @@ body {
     font-weight: 500;
 }
 
+.navb {
+    display: none;
+}
+
 .container {
     width: 100%;
 }
@@ -206,6 +210,15 @@ body {
     font-size: 25px;
 
     color: #FFF;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.exit {
+    margin-left: 20px;
+    margin-right: 10px;
+
+    transition: rotate 0.5s;
 }
 
 /* EVENTS & LOGICS (inside the css yes) */

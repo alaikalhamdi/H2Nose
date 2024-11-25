@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H2Nose Monitoring</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1c1c1c;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 200px;
+            background-color: #2e2e2e;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .container h2 {
+            margin: 0;
+            font-size: 18px;
+            color: lightgray;
+        }
+
+        .values {
+            margin: 20px 0;
+        }
+
+        .values div {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .values div span {
+            color: #6fc6ff;
+        }
+
+        .view-more {
+            background-color: #3b3b3b;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .temperature-humidity {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            background-color: #444444;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .temperature, .humidity {
+            font-size: 18px;
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .footer button {
+            background-color: #3b3b3b;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 8px;
+            flex: 1;
+            margin: 0 5px;
+        }
+
+        .footer button.record {
+            background-color: #ff4a4a;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>H2Nose Monitoring</h2>
+        <p style="font-size: 12px; color: lightgray;">Shown in Parts Per Million (PPM)</p>
+
+        <div class="values">
+            <div><span>H2</span> <span>400</span></div>
+            <div><span>CO2</span> <span>50</span></div>
+            <div><span>CO</span> <span>1</span></div>
+            <div><span>CH4</span> <span>1000</span></div>
+        </div>
+
+        <button class="view-more">View More</button>
+
+        <div class="temperature-humidity">
+            <div class="temperature">Temperature <br><span style="font-size: 24px;">36°C</span></div>
+            <div class="humidity">Humidity <br><span style="font-size: 24px;">10%</span></div>
+        </div>
+
+        <div class="footer">
+            <button class="monitor">Monitor</button>
+            <button class="record">Record</button>
+            <button class="files">Files</button>
+        </div>
+    </div>
+</body>
+</html>

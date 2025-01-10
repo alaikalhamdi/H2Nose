@@ -1,0 +1,71 @@
+temphum = document.getElementById('thgrad')
+
+function startMonitor() {
+    if (monitor) { return; }
+    monitor = true;
+    interval = listenInterval();
+}
+
+function stopMonitor() {
+    if (monitor) {
+        monitor = false;
+        clearInterval(interval);
+    }
+}
+
+function updateClassText(className, text) {
+    const elements = document.getElementsByClassName(className);
+    for (let i of elements) {
+        i.textContent = text;
+    }
+}
+
+function getContrastColor(rgbColor) {
+    const match = rgbColor.match(/\d+/g);
+    const r = parseInt(match[0], 10);
+    const g = parseInt(match[1], 10);
+    const b = parseInt(match[2], 10);
+    const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+    return brightness >= 128 ? 'rgb(0, 0, 0)' : 'rgb(255, 255, 255)';
+}
+
+function humidToColor(value) {
+    value = Math.min(Math.max(value, 0), 100);
+    const normalizedValue = value / 100;
+    const colorValue = Math.round(255 * (1 - normalizedValue));
+    return `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+}
+
+function temperatureToColor(value, minValue, maxValue) {
+    value = Math.min(Math.max(value, minValue), maxValue);
+    const normalizedValue = (value - minValue) / (maxValue - minValue);
+    const colorValue = Math.round(255 * (1 - normalizedValue));
+    return `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+}
+
+setInterval(() => {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            const data = JSON.parse(xhttp.responseText);
+            updateClassText('m-h2', parseFloat((data.MQ2_H2_1 + data.MQ2_H2_2 + data.MQ4_H2_1 + data.MQ4_H2_2 + data.MQ6_H2_1 + data.MQ6_H2_2 + data.MQ7_H2_1 + data.MQ7_H2_2 + data.MQ8_H2_1 + data.MQ8_H2_2) / 10).toFixed(0));
+            updateClassText('m-co', parseFloat((data.MQ2_CO_1 + data.MQ2_CO_2 + data.MQ7_CO_1 + data.MQ7_CO_2) / 4).toFixed(0));
+            updateClassText('m-co2', parseFloat((data.MG811_CO2_1 + data.MG811_CO2_2) / 2).toFixed(0));
+            updateClassText('m-ch4', parseFloat((data.MQ2_CH4_1 + data.MQ2_CH4_2 + data.MQ4_CH4_1 + data.MQ4_CH4_2 + data.MQ9_CH4_1 + data.MQ9_CH4_2) / 6).toFixed(0));
+            updateClassText('m-c6h6', parseFloat((data.MQ3_C6H6_1 + data.MQ3_C6H6_2) / 2).toFixed(0));
+            updateClassText('m-c3h8', parseFloat((data.MQ2_C3H8_1 + data.MQ2_C3H8_2) / 2).toFixed(0));
+            updateClassText('m-oh', parseFloat((data.MQ2_OH_1 + data.MQ2_OH_2) / 2).toFixed(0));
+            updateClassText('m-lpg', parseFloat((data.MQ2_LPG_1 + data.MQ2_LPG_2 + data.MQ9_LPG_1 + data.MQ9_LPG_2) / 4).toFixed(0));
+            updateClassText('m-humid', parseFloat(data.DHT22_H).toFixed(0) + '%');
+            updateClassText('m-temp', parseFloat(data.DHT22_T).toFixed(0) + '°C');
+            const humidColor = humidToColor(parseFloat(data.DHT22_H).toFixed(0));
+            const tempColor = temperatureToColor(parseFloat(data.DHT22_T).toFixed(0), 1, 100);
+            thgrad.style.background = `linear-gradient(90deg, ${tempColor} 22%, ${humidColor} 100%)`;
+            document.getElementById("temp").style.color = getContrastColor(tempColor);
+            document.getElementById("humid").style.color = getContrastColor(humidColor);
+            console.log(data);
+        }
+    };
+    xhttp.open("GET", "http://127.0.0.1/data", true);
+    xhttp.send();
+}, 1000);

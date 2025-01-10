@@ -2,7 +2,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="src/base.css">
-    <script src="src/index.js"></script>
     <!-- <link rel="stylesheet" type="text/css" href="src/landscape.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,44 +10,87 @@
 <body>
     <div class="main">
         <div class="container">
-            <div class="monitor">
+            <div class="monitor" id="monitor">
                 <h2 class="title">H2Nose Monitoring</h1>
                 <p class="ppminfo">Shown in Parts Per Million (PPM)</p>
                 <!-- Hydrogen H2 --> <!-- ed = Element Div, en = Element Name, eq = Element Quantity -->
                 <div class="ed">
                     <h1 class="en">H2</h1>
-                    <h1 class="eq">400</h1>
+                    <h1 class="eq m-h2">400</h1>
                 </div>
                 <!-- Carbon Dioxide CO2 --> <!-- ed = Element Div, en = Element Name, eq = Element Quantity -->
                 <div class="ed">
                     <h1 class="en">CO2</h1>
-                    <h1 class="eq">400</h1>
+                    <h1 class="eq m-co2">400</h1>
                 </div>
                 <!-- Carbon Monoxide CO --> <!-- ed = Element Div, en = Element Name, eq = Element Quantity -->
                 <div class="ed">
                     <h1 class="en">CO</h1>
-                    <h1 class="eq">400</h1>
+                    <h1 class="eq m-co">400</h1>
                 </div>
                 <!-- Methane CH4 --> <!-- ed = Element Div, en = Element Name, eq = Element Quantity -->
                 <div class="ed">
                     <h1 class="en">CH4</h1>
-                    <h1 class="eq">400</h1>
+                    <h1 class="eq m-ch4">400</h1>
                 </div>
                 <div class="vmdiv"> <!-- View More Div -->
-                    <button class="viewmore">
+                    <button class="viewmore" onclick="viewMore()">
                         View More
                     </button>
                 </div>
             </div>
-            <div class="thgrad"> <!-- THDIV Gradient Helper --> <!-- Color Gradient -->
-                <div class="temphum"> <!-- Temperature and Humidity --> <!-- Monochrome Gradient -->
-                    <div class="thchild">
-                        <p class="tlabel">Temperature</p>
-                        <p class="tvalue">30°C</p>
+            <div class="detailed" id="detailed">
+                <div class="detinfogrid">
+                    <div class="detinfo">
+                        <h1 class="dettitle">H2</h1>
+                        <p class="detppm m-h2">400</p>
                     </div>
-                    <div class="thchild">
+                    <div class="detinfo">
+                        <h1 class="dettitle">CO2</h1>
+                        <p class="detppm m-co2">400</p>
+                    </div> 
+                    <div class="detinfo">
+                        <h1 class="dettitle">CO</h1>
+                        <p class="detppm m-co">400</p>
+                    </div>
+                    <div class="detinfo">
+                        <h1 class="dettitle">CH4</h1>
+                        <p class="detppm m-ch4">400</p>
+                    </div>
+                    <div class="detinfo">
+                        <h1 class="dettitle">C6H6</h1>
+                        <p class="detppm m-c6h6">400</p>
+                    </div>
+                    <div class="detinfo">
+                        <h1 class="dettitle">C3H8</h1>
+                        <p class="detppm m-c3h8">400</p>
+                    </div>
+                    <div class="detinfo">
+                        <h1 class="dettitle">OH</h1>
+                        <p class="detppm m-oh">400</p>
+                    </div>
+                    <div class="detinfo">
+                        <h1 class="dettitle">LPG</h1>
+                        <p class="detppm m-lpg">400</p>
+                    </div> 
+                </div>
+                <div class="detbuttondiv">
+                    <div class="vmdiv">
+                        <button class="viewmore" onclick="viewMore()">
+                            <- Go back
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="thgrad" id="thgrad"> <!-- THDIV Gradient Helper --> <!-- Color Gradient -->
+                <div class="temphum"> <!-- Temperature and Humidity --> <!-- Monochrome Gradient -->
+                    <div class="thchild" id="temp">
+                        <p class="tlabel">Temperature</p>
+                        <p class="tvalue m-temp">30°C</p>
+                    </div>
+                    <div class="thchild" id="humid">
                         <p class="hlabel">Humidity</p>
-                        <p class="hvalue">30%</p>
+                        <p class="hvalue m-humid">30%</p>
                     </div>
                 </div>
             </div>
@@ -76,4 +118,6 @@
             </div>
         </div>
     </div>
+    <script src="src/monitoring.js"></script>
+    <script src="src/index.js"></script>
 </body>

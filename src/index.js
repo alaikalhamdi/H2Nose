@@ -17,9 +17,23 @@ function quitPrompt() {
     }
 
     // Use a ternary operator for button rotation
-    exitButton.style.rotate = state ? "45deg" : "0deg";
+    exitButton.style.rotate = state ? "225deg" : "0deg";
 }
 
 function closeBrowser() {
     window.close()
+}
+
+// viewmore button toggling the detailed div
+function viewMore() {
+    const detailed = document.getElementById("detailed");
+    const monitor = document.getElementById("monitor");
+
+    if (detailed.style.display === "block") {
+        detailed.style.display = "none";
+        monitor.style.display = "block";
+    } else {
+        detailed.style.display = "block";
+        monitor.style.display = "none";
+    }
 }

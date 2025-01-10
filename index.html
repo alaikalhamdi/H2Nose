@@ -11,7 +11,7 @@
 <body>
     <div class="main">
         <div class="container">
-            <div class="monitor">
+            <div class="monitor" id="monitor">
                 <h2 class="title">H2Nose Monitoring</h1>
                 <p class="ppminfo">Shown in Parts Per Million (PPM)</p>
                 <!-- Hydrogen H2 --> <!-- ed = Element Div, en = Element Name, eq = Element Quantity -->
@@ -35,10 +35,51 @@
                     <h1 class="eq">400</h1>
                 </div>
                 <div class="vmdiv"> <!-- View More Div -->
-                    <button class="viewmore">
+                    <button class="viewmore" onclick="viewMore()">
                         View More
                     </button>
                 </div>
+            </div>
+            <div class="detailed" id="detailed">
+                <div class="detinfogrid">
+                    <div class="detinfo">
+                        <h1 class="dettitle">H2</h1>
+                        <p class="detppm">400</p>
+                    </div>
+                    <div class="detinfo">
+                        <h1 class="dettitle">CO2</h1>
+                        <p class="detppm">400</p>
+                    </div> 
+                    <div class="detinfo">
+                        <h1 class="dettitle">CO</h1>
+                        <p class="detppm">400</p>
+                    </div>
+                    <div class="detinfo">
+                        <h1 class="dettitle">CH4</h1>
+                        <p class="detppm">400</p>
+                    </div>
+                    <div class="detinfo">
+                        <h1 class="dettitle">C6H6</h1>
+                        <p class="detppm">400</p>
+                    </div>
+                    <div class="detinfo">
+                        <h1 class="dettitle">C3H8</h1>
+                        <p class="detppm">400</p>
+                    </div>
+                    <div class="detinfo">
+                        <h1 class="dettitle">OH</h1>
+                        <p class="detppm">400</p>
+                    </div>
+                    <div class="detinfo">
+                        <h1 class="dettitle">LPG</h1>
+                        <p class="detppm">400</p>
+                    </div> 
+                </div>
+                <!-- <div class="vmdiv">
+                    <button class="viewmore">
+                        View More
+                    </button>
+                </div> -->
             </div>
             <div class="thgrad"> <!-- THDIV Gradient Helper --> <!-- Color Gradient -->
                 <div class="temphum"> <!-- Temperature and Humidity --> <!-- Monochrome Gradient -->

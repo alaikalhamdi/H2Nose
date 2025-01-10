@@ -25,6 +25,37 @@ body {
     width: 100%;
 }
 
+.detailed {
+    display: none;
+}
+
+.detinfogrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 1fr;
+
+    background-color: #222;
+    color: aliceblue;
+
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 20px;
+
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+
+    border-radius: 10px;
+}
+
+.detinfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
 .navblock {
     display: flex;
     justify-content: space-around;
@@ -161,6 +192,25 @@ body {
     font-weight: 400;
     font-size: 50px;
     
+    color: #7DD0F9;
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.dettitle {
+    font-family: "Inter", sans-serif;
+    font-size: 30px;
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.detppm {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 40px;
+
     color: #7DD0F9;
 
     margin-top: 15px;

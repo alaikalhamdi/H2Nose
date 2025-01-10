@@ -1,4 +1,65 @@
 temphum = document.getElementById('thgrad')
+var chartCanvas = document.getElementById('detgraph');
+var chart;
+var chartDataSets = [];
+var chartLabels = ['H2', 'CO', 'CO2', 'CH4', 'C6H6', 'C3H8', 'OH', 'LPG'];
+
+chartCanvas.style.width = '360px';
+chartCanvas.style.height = '280px';
+
+function resetDataSets(){chartDataSets = [];for(i of chartLabels){chartDataSets.push({label: i, tension: 0, data: []});};}
+resetDataSets();
+
+chart = new Chart(chartCanvas, {
+    type: 'line',
+    data: {
+        labels: [],
+        datasets: chartDataSets
+    },
+    options: {
+        responsive: true
+    }
+});  
+
+function updateChart(chart, data, time) {
+    chartData = {
+        "H2" : parseFloat((data.MQ2_H2_1+data.MQ2_H2_2+data.MQ4_H2_1+data.MQ4_H2_2+data.MQ6_H2_1+data.MQ6_H2_2+data.MQ7_H2_1+data.MQ7_H2_2+data.MQ8_H2_1+data.MQ8_H2_2)/10).toFixed(0),
+        "CO" : parseFloat((data.MQ2_CO_1+data.MQ2_CO_2+data.MQ7_CO_1+data.MQ7_CO_2)/4).toFixed(0),
+        "CO2" : parseFloat((data.MG811_CO2_1+data.MG811_CO2_2)/2).toFixed(0),
+        "CH4" : parseFloat((data.MQ2_CH4_1+data.MQ2_CH4_2+data.MQ4_CH4_1+data.MQ4_CH4_2+data.MQ9_CH4_1+data.MQ9_CH4_2)/6).toFixed(0),
+        "C6H6" : parseFloat((data.MQ3_C6H6_1+data.MQ3_C6H6_2)/2).toFixed(0),
+        "C3H8" : parseFloat((data.MQ2_C3H8_1+data.MQ2_C3H8_2)/2).toFixed(0),
+        "OH" : parseFloat((data.MQ2_OH_1+data.MQ2_OH_2)/2).toFixed(0),
+        "LPG" : parseFloat((data.MQ2_LPG_1+data.MQ2_LPG_2+data.MQ9_LPG_1+data.MQ9_LPG_2)/4).toFixed(0),
+    }
+    chart.data.labels.push(timerecord(parseInt(time)));
+    if (chart.data.labels.length > 11) {
+        chart.data.labels.shift();
+    }
+    chart.data.datasets.forEach((dataset) => {
+        dataset.data.push(chartData[dataset.label]);
+        if (dataset.data.length > 10) {
+            dataset.data.shift();
+        }
+    });
+    chart.update();
+    console.log(chart.data)
+}
+
+function timerecord(timestamps){
+    tr = [];
+    dt = 0;
+    for (v in timestamps) {
+        vr = Math.round(v)
+        tr.push(vr)
+        dt += vr
+    }
+    const timeLabels = tr.map(timestamp => {
+    const duration = moment.duration((timestamp - tr[0])*2, 'seconds');
+    return duration.minutes() +':'+ duration.seconds();
+  });
+  return timeLabels
+}
 
 function startMonitor() {
     if (monitor) { return; }
@@ -48,6 +109,7 @@ setInterval(() => {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             const data = JSON.parse(xhttp.responseText);
+            updateChart(chart, data, data.time);
             updateClassText('m-h2', parseFloat((data.MQ2_H2_1 + data.MQ2_H2_2 + data.MQ4_H2_1 + data.MQ4_H2_2 + data.MQ6_H2_1 + data.MQ6_H2_2 + data.MQ7_H2_1 + data.MQ7_H2_2 + data.MQ8_H2_1 + data.MQ8_H2_2) / 10).toFixed(0));
             updateClassText('m-co', parseFloat((data.MQ2_CO_1 + data.MQ2_CO_2 + data.MQ7_CO_1 + data.MQ7_CO_2) / 4).toFixed(0));
             updateClassText('m-co2', parseFloat((data.MG811_CO2_1 + data.MG811_CO2_2) / 2).toFixed(0));

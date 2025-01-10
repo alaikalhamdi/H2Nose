@@ -1,8 +1,8 @@
+<script src="src/chart.min.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="src/base.css">
-    <!-- <link rel="stylesheet" type="text/css" href="src/landscape.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -40,6 +40,9 @@
                 </div>
             </div>
             <div class="detailed" id="detailed">
+                <div class="detgraphdiv">
+                    <canvas id="detgraph" class="detgraph"></canvas>
+                </div>
                 <div class="detinfogrid">
                     <div class="detinfo">
                         <h1 class="dettitle">H2</h1>
@@ -118,6 +121,6 @@
             </div>
         </div>
     </div>
-    <script src="src/monitoring.js"></script>
     <script src="src/index.js"></script>
+    <script src="src/monitoring.js"></script>
 </body>

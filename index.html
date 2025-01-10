@@ -3,52 +3,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="src/base.css">
     <script src="src/index.js"></script>
-    <!-- <link rel="stylesheet" type="text/css" href="src/landscape.css"> -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="src/fonts.css" rel="stylesheet">
 </head>
 <body>
     <div class="main">
         <div class="container">
-            <div class="monitor">
-                <h2 class="title">H2Nose Monitoring</h1>
-                <p class="ppminfo">Shown in Parts Per Million (PPM)</p>
-                <!-- Hydrogen H2 --> <!-- ed = Element Div, en = Element Name, eq = Element Quantity -->
-                <div class="ed">
-                    <h1 class="en">H2</h1>
-                    <h1 class="eq">400</h1>
+            <div class="a" style="display: none;"> <!-- MONITOR / DASHBOARD PAGE-->
+                <div class="monitor">
+                    <h2 class="title">H2Nose Monitoring</h1>
+                    <p class="ppminfo">Shown in Parts Per Million (PPM)</p>
+                    <!-- Hydrogen H2 --> <!-- ed = Element Div, en = Element Name, eq = Element Quantity -->
+                    <div class="ed">
+                        <h1 class="en">H2</h1>
+                        <h1 class="eq">400</h1>
+                    </div>
+                    <!-- Carbon Dioxide CO2 --> <!-- ed = Element Div, en = Element Name, eq = Element Quantity -->
+                    <div class="ed">
+                        <h1 class="en">CO2</h1>
+                        <h1 class="eq">400</h1>
+                    </div>
+                    <!-- Carbon Monoxide CO --> <!-- ed = Element Div, en = Element Name, eq = Element Quantity -->
+                    <div class="ed">
+                        <h1 class="en">CO</h1>
+                        <h1 class="eq">400</h1>
+                    </div>
+                    <!-- Methane CH4 --> <!-- ed = Element Div, en = Element Name, eq = Element Quantity -->
+                    <div class="ed">
+                        <h1 class="en">CH4</h1>
+                        <h1 class="eq">400</h1>
+                    </div>
+                    <div class="vmdiv"> <!-- View More Div -->
+                        <button class="viewmore">
+                            View More
+                        </button>
+                    </div>
                 </div>
-                <!-- Carbon Dioxide CO2 --> <!-- ed = Element Div, en = Element Name, eq = Element Quantity -->
-                <div class="ed">
-                    <h1 class="en">CO2</h1>
-                    <h1 class="eq">400</h1>
-                </div>
-                <!-- Carbon Monoxide CO --> <!-- ed = Element Div, en = Element Name, eq = Element Quantity -->
-                <div class="ed">
-                    <h1 class="en">CO</h1>
-                    <h1 class="eq">400</h1>
-                </div>
-                <!-- Methane CH4 --> <!-- ed = Element Div, en = Element Name, eq = Element Quantity -->
-                <div class="ed">
-                    <h1 class="en">CH4</h1>
-                    <h1 class="eq">400</h1>
-                </div>
-                <div class="vmdiv"> <!-- View More Div -->
-                    <button class="viewmore">
-                        View More
-                    </button>
+                <div class="thgrad"> <!-- THDIV Gradient Helper --> <!-- Color Gradient -->
+                    <div class="temphum"> <!-- Temperature and Humidity --> <!-- Monochrome Gradient -->
+                        <div class="thchild">
+                            <p class="tlabel">Temperature</p>
+                            <p class="tvalue">30°C</p>
+                        </div>
+                        <div class="thchild">
+                            <p class="hlabel">Humidity</p>
+                            <p class="hvalue">30%</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="thgrad"> <!-- THDIV Gradient Helper --> <!-- Color Gradient -->
-                <div class="temphum"> <!-- Temperature and Humidity --> <!-- Monochrome Gradient -->
-                    <div class="thchild">
-                        <p class="tlabel">Temperature</p>
-                        <p class="tvalue">30°C</p>
-                    </div>
-                    <div class="thchild">
-                        <p class="hlabel">Humidity</p>
-                        <p class="hvalue">30%</p>
+            <div class="b"> <!-- DETAILS / VIEW MORE -->
+                <div class="monitor">
+                    <div class="gas-grid">
+                        <div>
+                            
+                        </div>
                     </div>
                 </div>
             </div>
@@ -57,7 +66,7 @@
     <div class="nav">
         <div class="navblock">
             <div class="exit" id="exit" onclick="quitPrompt()">
-                <p>&#10060</p>
+                <p>&#9932</p>
             </div>
             <div class="navactive nava">
                 <p>Monitor</p>
@@ -71,8 +80,8 @@
             <div class="navb" onclick="closeBrowser()">
                 <p>Close app</p>
             </div>
-            <div class="navb navactive">
-                <p>Turn Off H2Nose...</p>
+            <div class="navb">
+                <p class="turnoff">Turn Off H2Nose...</p>
             </div>
         </div>
     </div>

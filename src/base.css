@@ -30,6 +30,7 @@ body {
     justify-content: space-around;
 
     background-color: #222;
+    color: #FFF;
 
     border-radius: 10px;
 
@@ -37,6 +38,13 @@ body {
     margin-right: 40px;
 
     font-weight: 500;
+}
+
+.navblock div {
+    transition: all ease 1s;
+
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .navb {
@@ -205,19 +213,21 @@ body {
     margin-bottom: 10px;
 }
 
+.turnoff {
+    color: red;
+    
+    font-weight: bold;
+}
+
 .navblock p {
     font-family: "Inter", sans-serif;
     font-size: 25px;
 
-    color: #FFF;
     margin-right: 10px;
     margin-left: 10px;
 }
 
 .exit {
-    margin-left: 20px;
-    margin-right: 10px;
-
     transition: rotate 0.5s;
 }
 

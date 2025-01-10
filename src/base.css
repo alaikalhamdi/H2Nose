@@ -49,6 +49,17 @@ body {
     border-radius: 10px;
 }
 
+.detbuttondiv {
+    background-color: #222;
+    color: aliceblue;
+
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 20px;
+    
+    border-radius: 10px;
+}
+
 .detinfo {
     display: flex;
     justify-content: space-between;
@@ -105,7 +116,6 @@ body {
 }
 
 .thgrad {
-    background: rgb(252,159,29);
     background: linear-gradient(90deg, rgba(252,159,29,1) 22%, rgba(203,197,197,1) 100%);
     
     margin-left: 40px;

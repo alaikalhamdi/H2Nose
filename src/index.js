@@ -24,11 +24,16 @@ function closeBrowser() {
     window.close()
 }
 
-// viewmore button showing the detailed div
+// viewmore button toggling the detailed div
 function viewMore() {
     const detailed = document.getElementById("detailed");
-    detailed.style.display = "block";
-    // hide the monitoring div
     const monitor = document.getElementById("monitor");
-    monitor.style.display = "none";
+
+    if (detailed.style.display === "block") {
+        detailed.style.display = "none";
+        monitor.style.display = "block";
+    } else {
+        detailed.style.display = "block";
+        monitor.style.display = "none";
+    }
 }

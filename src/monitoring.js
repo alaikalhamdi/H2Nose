@@ -4,9 +4,6 @@ var chart;
 var chartDataSets = [];
 var chartLabels = ['H2', 'CO', 'CO2', 'CH4', 'C6H6', 'C3H8', 'OH', 'LPG'];
 
-chartCanvas.style.width = '360px';
-chartCanvas.style.height = '280px';
-
 function resetDataSets(){chartDataSets = [];for(i of chartLabels){chartDataSets.push({label: i, tension: 0, data: []});};}
 resetDataSets();
 

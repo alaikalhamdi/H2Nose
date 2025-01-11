@@ -105,6 +105,8 @@ setInterval(() => {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
+            online = true;
+            changeStatus();
             const data = JSON.parse(xhttp.responseText);
             updateChart(chart, data, data.time);
             updateClassText('m-h2', parseFloat((data.MQ2_H2_1 + data.MQ2_H2_2 + data.MQ4_H2_1 + data.MQ4_H2_2 + data.MQ6_H2_1 + data.MQ6_H2_2 + data.MQ7_H2_1 + data.MQ7_H2_2 + data.MQ8_H2_1 + data.MQ8_H2_2) / 10).toFixed(0));
@@ -127,4 +129,8 @@ setInterval(() => {
     };
     xhttp.open("GET", "http://127.0.0.1/data", true);
     xhttp.send();
-}, 1000);
+    xhttp.onerror = function () {
+        online = false;
+        changeStatus();
+    };
+}, 2000);

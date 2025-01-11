@@ -81,7 +81,7 @@ def index():
     print('a')
     return open('index.html').read()
 
-@app.route('calibrate')
+@app.route('/calibrate')
 def touch_calibrate():
     script_path = "/path/to/your/script.sh"
 

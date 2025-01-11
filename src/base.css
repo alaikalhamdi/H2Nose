@@ -41,11 +41,11 @@ body {
     align-items: center;
 }
 
-.status {
+.statusdiv {
+    background-color: green;
+
     padding-left: 15px;
     padding-right: 15px;
-
-    background-color: green;
 
     border-radius: 20px;
 }

@@ -1,5 +1,6 @@
 // Declare state globally or as a property of the button
 let state = false;
+var online = true;
 
 function quitPrompt() {
     const nava = document.getElementsByClassName("nava");
@@ -45,4 +46,14 @@ setInterval(Time, 1000);
 function Time() {
     const d = new Date();
     document.getElementById("clock").innerHTML = d.toLocaleTimeString();
+}
+
+function changeStatus() {
+    if (online) {
+        document.getElementById("status").innerHTML = "Online";
+        document.getElementById("statusdiv").style.backgroundColor = "green";
+    } else if (!online) {
+        document.getElementById("status").innerHTML = "Offline";
+        document.getElementById("statusdiv").style.backgroundColor = "red";
+    }
 }

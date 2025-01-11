@@ -25,6 +25,31 @@ body {
     width: 100%;
 }
 
+.tray {
+    color: aliceblue;
+
+    border-radius: 10px;
+
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: -20px;
+}
+
+.trayblock {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status {
+    padding-left: 15px;
+    padding-right: 15px;
+
+    background-color: green;
+
+    border-radius: 20px;
+}
+
 .detailed {
     display: none;
 }
@@ -151,7 +176,7 @@ body {
     align-items: center;
 }
 
-/* Button and Componenets */
+/* Button and Components */
 
 .viewmore {
     display: flex;
@@ -189,6 +214,32 @@ body {
     
     margin-bottom: 0;
     padding-top: 30px;
+}
+
+.clock {
+    font-family: "Inter", sans-serif;
+    font-size: 23px;
+    font-weight: bold;
+
+    
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.connection {
+    font-family: "Inter", sans-serif;
+    font-size: 23px;
+
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.status {
+    font-family: "Inter", sans-serif;
+    font-size: 23px;
+
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .ppminfo {

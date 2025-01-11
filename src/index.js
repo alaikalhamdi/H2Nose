@@ -28,12 +28,21 @@ function closeBrowser() {
 function viewMore() {
     const detailed = document.getElementById("detailed");
     const monitor = document.getElementById("monitor");
+    const tray = document.getElementById("tray");
 
     if (detailed.style.display === "block") {
         detailed.style.display = "none";
         monitor.style.display = "block";
+        tray.style.marginBottom = "-20px";
     } else {
         detailed.style.display = "block";
         monitor.style.display = "none";
+        tray.style.marginBottom = "10px";
     }
+}
+
+setInterval(Time, 1000);
+function Time() {
+    const d = new Date();
+    document.getElementById("clock").innerHTML = d.toLocaleTimeString();
 }

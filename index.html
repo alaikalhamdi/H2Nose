@@ -8,18 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="notification" id="notification">
+    <div class="darkener"></div>
+    <div class="notification" id="notification" onclick="showNotif()">
         <p class="notificationtext">&#10003 Recording Complete</p>
-        <p class="notificationdesc">Click here to save your record.</p>
-    </div>
-    <div class="saveModal" id="saveModal">
-        <div class="promptbox">
-            <p class="prompttext">Are you sure you want to quit?</p>
-        </div> 
-        <div class="promptbuttondiv">
-            <button class="promptbutton" onclick="quit()">Yes</button>
-            <button class="promptbutton" onclick="cancelQuit()">No</button>
-        </div>
+        <p class="notificationdesc">Saved as R_22-22-2025_19:34.json</p>
     </div>
     <div class="main">
         <div class="container">

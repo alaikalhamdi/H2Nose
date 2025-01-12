@@ -2,6 +2,8 @@
 let state = false;
 var online = true;
 
+let notifVisible = false;
+
 function quitPrompt() {
     const nava = document.getElementsByClassName("nava");
     const navb = document.getElementsByClassName("navb");
@@ -57,8 +59,19 @@ function changeStatus() {
 }
 
 function showNotif() {
-    document.getElementById("notification").style.display = "block";
-    setTimeout(() => {
-        document.getElementById("notification").style.right = "30px";
-    }, 200);
+    const notification = document.getElementById("notification");
+
+    notifVisible = !notifVisible; // Toggle the visibility state
+
+    if (notifVisible) {
+        notification.style.display = "block";
+        setTimeout(() => {
+            notification.style.right = "40px";
+        }, 200);
+    } else {
+        notification.style.right = "-400px"; // Assuming this hides the notification
+        setTimeout(() => {
+            notification.style.display = "none";
+        }, 200);
+    }
 }

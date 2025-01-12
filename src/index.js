@@ -2,6 +2,8 @@
 let state = false;
 var online = true;
 
+let notifVisible = false;
+
 function quitPrompt() {
     const nava = document.getElementsByClassName("nava");
     const navb = document.getElementsByClassName("navb");
@@ -49,11 +51,37 @@ function Time() {
 }
 
 function changeStatus() {
-    if (online) {
-        document.getElementById("status").innerHTML = "Online";
-        document.getElementById("statusdiv").style.backgroundColor = "green";
-    } else if (!online) {
-        document.getElementById("status").innerHTML = "Offline";
-        document.getElementById("statusdiv").style.backgroundColor = "red";
+    const statusElement = document.getElementById("status");
+    const statusDiv = document.getElementById("statusdiv");
+
+    if (recording) {
+        statusElement.innerHTML = 'REC ' + formatElapsedTime(elapsed);
+        statusDiv.style.backgroundColor = "red";
+    } else {
+        statusElement.innerHTML = online ? "Online" : "Offline";
+        statusDiv.style.backgroundColor = online ? "green" : "black";
+    }
+}
+
+function showNotif(text) {
+    const notification = document.getElementById("notification");
+    const notifdesc = document.getElementById("notificationdesc");
+
+    if (text) {
+        notifdesc.textContent = 'Saved as ' + text + '.json';
+    }
+
+    notifVisible = !notifVisible; // Toggle the visibility state
+
+    if (notifVisible) {
+        notification.style.display = "block";
+        setTimeout(() => {
+            notification.style.right = "40px";
+        }, 200);
+    } else {
+        notification.style.right = "-400px"; // Assuming this hides the notification
+        setTimeout(() => {
+            notification.style.display = "none";
+        }, 200);
     }
 }

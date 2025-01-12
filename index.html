@@ -8,6 +8,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="darkener"></div>
+    <div class="notification" id="notification" onclick="showNotif()">
+        <p class="notificationtext">&#10003 Recording Complete</p>
+        <p class="notificationdesc" id="notificationdesc">Saved as R_22-22-2025_19:34.json</p>
+    </div>
     <div class="main">
         <div class="container">
             <div class="tray" id="tray">
@@ -113,11 +118,11 @@
             <div class="exit" id="exit" onclick="quitPrompt()">
                 <p>&#10060</p>
             </div>
-            <div class="navactive nava">
+            <div class="navactive nava" onclick="showNotif()">
                 <p>Monitor</p>
             </div>
-            <div class="recordb nava">
-                <p>Record</p>
+            <div class="recordb nava" id="recordb" onclick="recordSwitch()">
+                <p id="recordbt">Record</p>
             </div>
             <div class="nava">
                 <p>Files</p>
@@ -132,4 +137,5 @@
     </div>
     <script src="src/index.js"></script>
     <script src="src/monitoring.js"></script>
+    <script src="src/recording.js"></script>
 </body>

@@ -70,6 +70,12 @@ function stopRecord() {
     console.log("recording = " + recording + " " + "pause = " + pause);
 }
 
+function formatElapsedTime(milliseconds) {
+    const totalSeconds = Math.floor(milliseconds / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+}
 
 function Timer(method) {
     if (method === "add") {
@@ -85,4 +91,5 @@ function Timer(method) {
 setInterval(() => {
     if(recording){Timer("add");}
     if(elapsed>=180000){stopRecord();};
+    changeStatus();
 }, 1000);

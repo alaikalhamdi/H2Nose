@@ -54,8 +54,13 @@ function changeStatus() {
     const statusElement = document.getElementById("status");
     const statusDiv = document.getElementById("statusdiv");
 
-    statusElement.innerHTML = online ? "Online" : "Offline";
-    statusDiv.style.backgroundColor = online ? "green" : "black";
+    if (recording) {
+        statusElement.innerHTML = 'REC ' + formatElapsedTime(elapsed);
+        statusDiv.style.backgroundColor = "red";
+    } else {
+        statusElement.innerHTML = online ? "Online" : "Offline";
+        statusDiv.style.backgroundColor = online ? "green" : "black";
+    }
 }
 
 function showNotif(text) {

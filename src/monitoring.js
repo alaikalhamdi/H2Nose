@@ -96,7 +96,6 @@ setInterval(() => {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             online = true;
-            changeStatus();
             const data = JSON.parse(xhttp.responseText);
             updateChart(chart, data, data.t);
             updateClassText('m-h2', parseFloat((data.MQ2_H2_1 + data.MQ2_H2_2 + data.MQ4_H2_1 + data.MQ4_H2_2 + data.MQ6_H2_1 + data.MQ6_H2_2 + data.MQ7_H2_1 + data.MQ7_H2_2 + data.MQ8_H2_1 + data.MQ8_H2_2) / 10).toFixed(0));

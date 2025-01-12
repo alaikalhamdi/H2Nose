@@ -3,6 +3,8 @@
 body {
     background-color: #333;
     margin: 0;
+
+    overflow:hidden;
 }
 
 /* Divisions */
@@ -26,17 +28,21 @@ body {
 }
 
 .notification {
+    display: none;
+    position: absolute;
+
     background-color: rgb(34, 68, 43);
 
-    position: absolute;
     top: 20px;
-    right: 30px;
+    right: -400px;
 
     width: 40%;
 
     padding: 20px;
 
     border-radius: 10px;
+
+    transition: right 0.2s;
 }
 
 .tray {

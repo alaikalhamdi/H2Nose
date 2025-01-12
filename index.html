@@ -12,6 +12,15 @@
         <p class="notificationtext">&#10003 Recording Complete</p>
         <p class="notificationdesc">Click here to save your record.</p>
     </div>
+    <div class="saveModal" id="saveModal">
+        <div class="promptbox">
+            <p class="prompttext">Are you sure you want to quit?</p>
+        </div> 
+        <div class="promptbuttondiv">
+            <button class="promptbutton" onclick="quit()">Yes</button>
+            <button class="promptbutton" onclick="cancelQuit()">No</button>
+        </div>
+    </div>
     <div class="main">
         <div class="container">
             <div class="tray" id="tray">
@@ -117,7 +126,7 @@
             <div class="exit" id="exit" onclick="quitPrompt()">
                 <p>&#10060</p>
             </div>
-            <div class="navactive nava">
+            <div class="navactive nava" onclick="showNotif()">
                 <p>Monitor</p>
             </div>
             <div class="recordb nava" id="recordb" onclick="recordSwitch()">
@@ -136,4 +145,5 @@
     </div>
     <script src="src/index.js"></script>
     <script src="src/monitoring.js"></script>
+    <script src="src/recording.js"></script>
 </body>

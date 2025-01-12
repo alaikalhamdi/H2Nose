@@ -49,11 +49,16 @@ function Time() {
 }
 
 function changeStatus() {
-    if (online) {
-        document.getElementById("status").innerHTML = "Online";
-        document.getElementById("statusdiv").style.backgroundColor = "green";
-    } else if (!online) {
-        document.getElementById("status").innerHTML = "Offline";
-        document.getElementById("statusdiv").style.backgroundColor = "black";
-    }
+    const statusElement = document.getElementById("status");
+    const statusDiv = document.getElementById("statusdiv");
+
+    statusElement.innerHTML = online ? "Online" : "Offline";
+    statusDiv.style.backgroundColor = online ? "green" : "black";
+}
+
+function showNotif() {
+    document.getElementById("notification").style.display = "block";
+    setTimeout(() => {
+        document.getElementById("notification").style.right = "30px";
+    }, 200);
 }

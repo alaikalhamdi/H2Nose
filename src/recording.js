@@ -1,5 +1,6 @@
 var recording = false;
 var pause = false;
+var elapsed = 0;
 
 function nutshell(method){
     var xhttp = new XMLHttpRequest();
@@ -7,7 +8,7 @@ function nutshell(method){
     xhttp.send();
 }
 
-function recordswitch(){
+function recordSwitch(){
     if(recording){
         stopRecord();
     } else {
@@ -22,7 +23,6 @@ function startRecord(){
             recording = true;
             pause = false;
             console.log("recording = " + recording + " " + "pause = " + pause);
-            if(elapsed>=180000){stopRecord();};
         }
     }
     xhttp.open("GET", "http://127.0.0.1/record/start", true);
@@ -34,11 +34,8 @@ function stopRecord(){
     pause = true;
     Timer("reset");
     nutshell("pause")
-    saveModal("show-modal")
-}
-
-if (recording) {  
-    timerInterval = setInterval(() => Timer("add"), 1000);
+    console.log("recording = " + recording + " " + "pause = " + pause);
+    showNotif();
 }
 
 function Timer(method) {
@@ -51,3 +48,8 @@ function Timer(method) {
         elapsed = 0;
     }
 }
+
+setInterval(() => {
+    if(recording){Timer("add");}
+    if(elapsed>=180000){stopRecord();};
+}, 1000);

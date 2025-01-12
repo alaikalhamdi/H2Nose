@@ -25,6 +25,20 @@ body {
     width: 100%;
 }
 
+.notification {
+    background-color: rgb(34, 68, 43);
+
+    position: absolute;
+    top: 20px;
+    right: 30px;
+
+    width: 40%;
+
+    padding: 20px;
+
+    border-radius: 10px;
+}
+
 .tray {
     color: aliceblue;
 
@@ -214,6 +228,25 @@ body {
     
     margin-bottom: 0;
     padding-top: 30px;
+}
+
+.notificationtext {
+    font-family: "Inter", sans-serif;
+    font-size: 25px;
+
+    color: #FFF;
+    
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.notificationdesc {
+    font-family: "Inter", sans-serif;
+    font-size: 20px;
+
+    color: rgb(194, 194, 194);
+    
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 .clock {

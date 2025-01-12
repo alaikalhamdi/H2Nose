@@ -54,6 +54,6 @@ function changeStatus() {
         document.getElementById("statusdiv").style.backgroundColor = "green";
     } else if (!online) {
         document.getElementById("status").innerHTML = "Offline";
-        document.getElementById("statusdiv").style.backgroundColor = "red";
+        document.getElementById("statusdiv").style.backgroundColor = "black";
     }
 }

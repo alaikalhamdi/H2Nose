@@ -31,16 +31,19 @@ function updateChart(chart, data, time) {
     }
     chart.data.labels.push(timerecord(parseInt(time)));
     if (chart.data.labels.length > 11) {
-        chart.data.labels.shift();
+        if (!recording) {
+            chart.data.labels.shift();
+        }
     }
     chart.data.datasets.forEach((dataset) => {
         dataset.data.push(chartData[dataset.label]);
         if (dataset.data.length > 10) {
+            if (!recording) {
             dataset.data.shift();
+            }
         }
     });
     chart.update();
-    console.log(chart.data)
 }
 
 function timerecord(timestamps){
@@ -56,19 +59,6 @@ function timerecord(timestamps){
     return duration.minutes() +':'+ duration.seconds();
   });
   return timeLabels
-}
-
-function startMonitor() {
-    if (monitor) { return; }
-    monitor = true;
-    interval = listenInterval();
-}
-
-function stopMonitor() {
-    if (monitor) {
-        monitor = false;
-        clearInterval(interval);
-    }
 }
 
 function updateClassText(className, text) {
@@ -108,7 +98,7 @@ setInterval(() => {
             online = true;
             changeStatus();
             const data = JSON.parse(xhttp.responseText);
-            updateChart(chart, data, data.time);
+            updateChart(chart, data, data.t);
             updateClassText('m-h2', parseFloat((data.MQ2_H2_1 + data.MQ2_H2_2 + data.MQ4_H2_1 + data.MQ4_H2_2 + data.MQ6_H2_1 + data.MQ6_H2_2 + data.MQ7_H2_1 + data.MQ7_H2_2 + data.MQ8_H2_1 + data.MQ8_H2_2) / 10).toFixed(0));
             updateClassText('m-co', parseFloat((data.MQ2_CO_1 + data.MQ2_CO_2 + data.MQ7_CO_1 + data.MQ7_CO_2) / 4).toFixed(0));
             updateClassText('m-co2', parseFloat((data.MG811_CO2_1 + data.MG811_CO2_2) / 2).toFixed(0));
@@ -124,7 +114,6 @@ setInterval(() => {
             thgrad.style.background = `linear-gradient(90deg, ${tempColor} 22%, ${humidColor} 100%)`;
             document.getElementById("temp").style.color = getContrastColor(tempColor);
             document.getElementById("humid").style.color = getContrastColor(humidColor);
-            console.log(data);
         }
     };
     xhttp.open("GET", "http://127.0.0.1/data", true);

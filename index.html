@@ -8,6 +8,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="notification" id="notification">
+        <p class="notificationtext">&#10003 Recording Complete</p>
+        <p class="notificationdesc">Click here to save your record.</p>
+    </div>
     <div class="main">
         <div class="container">
             <div class="tray" id="tray">
@@ -116,7 +120,7 @@
             <div class="navactive nava">
                 <p>Monitor</p>
             </div>
-            <div class="recordb nava">
+            <div class="recordb nava" id="recordb" onclick="recordSwitch()">
                 <p>Record</p>
             </div>
             <div class="nava">

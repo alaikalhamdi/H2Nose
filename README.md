@@ -18,22 +18,6 @@ H2Nose is a tool used to check the Gasifier's effectiveness in producing Syngas 
 - Recorded gas data is saved as JSON file, which can be opened using the H2Nose UI
 - Dark Mode (for lower power consumption)
 
-## Usage
-To install H2Nose, follow these steps:
-
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/yourusername/H2Nose.git
-    ```
-2. Navigate to the project directory:
-    ```sh
-    cd H2Nose
-    ```
-3. Install the required dependencies:
-    ```sh
-    npm install
-    ```
-
 ## Installation / Usage
 This app should be run in H2Nose, because this is literally built for it. But if you want to try, please follow the following steps:
 1. Clone the repository:

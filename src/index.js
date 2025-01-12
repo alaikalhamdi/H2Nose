@@ -2,6 +2,9 @@
 let state = false;
 var online = true;
 
+var ipAddress = "Null";
+var wifiSSID = "Not Connected";
+
 let notifVisible = false;
 
 function quitPrompt() {
@@ -85,3 +88,47 @@ function showNotif(text) {
         }, 200);
     }
 }
+
+// add a function to get wifi ssid and ip address via xhttp
+function getWifiInfo() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            const response = this.responseText;
+            wifiSSID = response;
+        }
+    };
+    xhttp.open("GET", "http://127.0.0.1/wifi", true);
+    xhttp.onerror = function () {
+        wifiSSID = 'Not Connected';
+    };
+    xhttp.send(); // Send the request
+}
+
+// do the same for ip address
+function getIpAddress() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            const response = this.responseText;
+            ipAddress = response;
+        }
+    };
+    xhttp.open("GET", "http://127.0.0.1/ip", true);
+    xhttp.onerror = function () {
+        ipAddress = "Null";
+    };
+    xhttp.send(); // Send the request
+}
+
+setInterval(() => {
+    if(recording){Timer("add");}
+    if(elapsed>=180000){stopRecord();};
+    changeStatus();
+}, 1000);
+
+setInterval(() => {
+    getWifiInfo();
+    getIpAddress();
+    document.getElementById("connection").textContent = wifiSSID + " | " + ipAddress;
+}, 10000);

@@ -7,6 +7,7 @@ from threading import Thread
 import json
 import os
 import subprocess
+import socket
 
 app = Flask('H2E')
 CORS(app)
@@ -93,6 +94,43 @@ def touch_calibrate():
     except subprocess.CalledProcessError as e:
         print("Error:", e.stderr)
         return e.stderr , 500
+
+def get_wifi_name_linux():
+    """Fetch Wi-Fi name (SSID) on Linux."""
+    try:
+        return subprocess.check_output(["iwgetid", "-r"], text=True).strip()
+    except subprocess.CalledProcessError:
+        raise RuntimeError("Linux method failed")
+
+def get_wifi_name_windows():
+    """Fetch Wi-Fi name (SSID) on Windows."""
+    try:
+        output = subprocess.check_output(["netsh", "wlan", "show", "interfaces"], text=True)
+        for line in output.splitlines():
+            if "SSID" in line and "BSSID" not in line:
+                return line.split(":", 1)[1].strip()
+        return "Not connected to Wi-Fi"
+    except subprocess.CalledProcessError:
+        raise RuntimeError("Windows method failed")
+
+@app.route('/wifi')
+def get_wifi_name():
+    try:
+        return get_wifi_name_windows()
+    except RuntimeError:
+        try:
+            return get_wifi_name_linux()
+        except RuntimeError:
+            return "Unable to determine Wi-Fi name", 500
+
+@app.route('/ip')
+def get_ip_address():
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+            s.connect(("8.8.8.8", 80))
+            return s.getsockname()[0]
+    except Exception:
+        return "Unable to get IP address", 500
 
 @app.route('/view')
 def view():

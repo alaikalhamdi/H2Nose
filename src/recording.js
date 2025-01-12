@@ -87,9 +87,3 @@ function Timer(method) {
         elapsed = 0;
     }
 }
-
-setInterval(() => {
-    if(recording){Timer("add");}
-    if(elapsed>=180000){stopRecord();};
-    changeStatus();
-}, 1000);

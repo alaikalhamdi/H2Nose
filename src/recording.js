@@ -14,10 +14,10 @@ function nutshell(method){
 function recordSwitch(){
     if(recording){
         stopRecord();
-        recordingButton.textContent = 'Stop';
+        recordingButton.textContent = 'Record';
     } else {
         startRecord();
-        recordingButton.textContent = 'Record';
+        recordingButton.textContent = 'Stop';
     }
 }
 

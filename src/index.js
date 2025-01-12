@@ -58,8 +58,13 @@ function changeStatus() {
     statusDiv.style.backgroundColor = online ? "green" : "black";
 }
 
-function showNotif() {
+function showNotif(text) {
     const notification = document.getElementById("notification");
+    const notifdesc = document.getElementById("notificationdesc");
+
+    if (text) {
+        notifdesc.textContent = 'Saved as ' + text + '.json';
+    }
 
     notifVisible = !notifVisible; // Toggle the visibility state
 

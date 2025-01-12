@@ -138,24 +138,34 @@ def record_resume():
 @app.route('/record/stop')
 def record_stop():
     global record_data, recorded_data
+
     if not record_data:
         return 'ok'
-    fn = request.args['name'] + '.json'
-    if '/' in fn:
+
+    name = request.args.get('name')
+    if not name:
+        return 'Name parameter is missing or empty', 400
+
+    # Sanitize and construct filename
+    fn = name + '.json'
+    if '/' in fn or '\\' in fn:  # Prevent directory traversal
         return '', 400
+
     try:
         os.mkdir('saves')
-    except:
+    except FileExistsError:
         pass
+
     dirfs = os.listdir('saves')
     num = 1
     while fn in dirfs:
-        fn = request.args['name'] + f'_{num}' + '.json'
+        fn = f"{name}_{num}.json"
         num += 1
+
     recorded_data = {'time_finished': datetime.now().timestamp() * 1000, 'data': recorded_data}
-    f = open('saves/' + fn, 'w')
-    f.write(json.dumps(recorded_data))
-    f.close()
+    with open(os.path.join('saves', fn), 'w') as f:
+        json.dump(recorded_data, f)
+
     recorded_data = []
     return fn
 

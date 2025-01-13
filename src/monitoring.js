@@ -20,14 +20,14 @@ chart = new Chart(chartCanvas, {
 
 function updateChart(chart, data, time) {
     chartData = {
-        "H2" : parseFloat((data.MQ2_H2_1+data.MQ2_H2_2+data.MQ4_H2_1+data.MQ4_H2_2+data.MQ6_H2_1+data.MQ6_H2_2+data.MQ7_H2_1+data.MQ7_H2_2+data.MQ8_H2_1+data.MQ8_H2_2)/10).toFixed(0),
-        "CO" : parseFloat((data.MQ2_CO_1+data.MQ2_CO_2+data.MQ7_CO_1+data.MQ7_CO_2)/4).toFixed(0),
-        "CO2" : parseFloat((data.MG811_CO2_1+data.MG811_CO2_2)/2).toFixed(0),
-        "CH4" : parseFloat((data.MQ2_CH4_1+data.MQ2_CH4_2+data.MQ4_CH4_1+data.MQ4_CH4_2+data.MQ9_CH4_1+data.MQ9_CH4_2)/6).toFixed(0),
-        "C6H6" : parseFloat((data.MQ3_C6H6_1+data.MQ3_C6H6_2)/2).toFixed(0),
-        "C3H8" : parseFloat((data.MQ2_C3H8_1+data.MQ2_C3H8_2)/2).toFixed(0),
-        "OH" : parseFloat((data.MQ2_OH_1+data.MQ2_OH_2)/2).toFixed(0),
-        "LPG" : parseFloat((data.MQ2_LPG_1+data.MQ2_LPG_2+data.MQ9_LPG_1+data.MQ9_LPG_2)/4).toFixed(0),
+        "H2" : parseFloat((data.MQ2_H2_1 + data.MQ2_H2_2 + data.MQ2_H2_3 + data.MQ4_H2_1 + data.MQ4_H2_2 + data.MQ4_H2_3 + data.MQ6_H2_1 + data.MQ6_H2_2 + data.MQ6_H2_3 + data.MQ8_H2_1 + data.MQ8_H2_2 + data.MQ8_H2_3) / 12).toFixed(0),
+        "CO" : parseFloat((data.MQ2_CO_1 + data.MQ2_CO_2 + data.MQ2_CO_3 + data.MQ7_CO_1 + data.MQ7_CO_2 + data.MQ7_CO_3) / 6).toFixed(0),
+        "CO2" : parseFloat((data.MG811_CO2_1 + data.MG811_CO2_2 + data.MG811_CO2_3) / 3).toFixed(0),
+        "CH4" : parseFloat((data.MQ2_CH4_1 + data.MQ2_CH4_2 + data.MQ2_CH4_3 + data.MQ4_CH4_1 + data.MQ4_CH4_2 + data.MQ4_CH4_3 + data.MQ9_CH4_1 + data.MQ9_CH4_2 + data.MQ9_CH4_3 + data.MQ214_CH4_1 + data.MQ214_CH4_2 + data.MQ214_CH4_3) / 12).toFixed(0),
+        "C6H6" : parseFloat((data.MQ3_C6H6_1 + data.MQ3_C6H6_2 + data.MQ3_C6H6_3) / 3).toFixed(0),
+        "C3H8" : parseFloat((data.MQ2_C3H8_1 + data.MQ2_C3H8_2 + data.MQ2_C3H8_3) / 3).toFixed(0),
+        "OH" : parseFloat((data.MQ3_OH_1 + data.MQ3_OH_2 + data.MQ3_OH_3) / 3).toFixed(0),
+        "LPG" : parseFloat((data.MQ2_LPG_1 + data.MQ2_LPG_2 + data.MQ2_LPG_3) / 3).toFixed(0),
     }
     chart.data.labels.push(timerecord(parseInt(time)));
     if (chart.data.labels.length > 11) {
@@ -98,14 +98,14 @@ setInterval(() => {
             online = true;
             const data = JSON.parse(xhttp.responseText);
             updateChart(chart, data, data.t);
-            updateClassText('m-h2', parseFloat((data.MQ2_H2_1 + data.MQ2_H2_2 + data.MQ4_H2_1 + data.MQ4_H2_2 + data.MQ6_H2_1 + data.MQ6_H2_2 + data.MQ7_H2_1 + data.MQ7_H2_2 + data.MQ8_H2_1 + data.MQ8_H2_2) / 10).toFixed(0));
-            updateClassText('m-co', parseFloat((data.MQ2_CO_1 + data.MQ2_CO_2 + data.MQ7_CO_1 + data.MQ7_CO_2) / 4).toFixed(0));
-            updateClassText('m-co2', parseFloat((data.MG811_CO2_1 + data.MG811_CO2_2) / 2).toFixed(0));
-            updateClassText('m-ch4', parseFloat((data.MQ2_CH4_1 + data.MQ2_CH4_2 + data.MQ4_CH4_1 + data.MQ4_CH4_2 + data.MQ9_CH4_1 + data.MQ9_CH4_2) / 6).toFixed(0));
-            updateClassText('m-c6h6', parseFloat((data.MQ3_C6H6_1 + data.MQ3_C6H6_2) / 2).toFixed(0));
-            updateClassText('m-c3h8', parseFloat((data.MQ2_C3H8_1 + data.MQ2_C3H8_2) / 2).toFixed(0));
-            updateClassText('m-oh', parseFloat((data.MQ2_OH_1 + data.MQ2_OH_2) / 2).toFixed(0));
-            updateClassText('m-lpg', parseFloat((data.MQ2_LPG_1 + data.MQ2_LPG_2 + data.MQ9_LPG_1 + data.MQ9_LPG_2) / 4).toFixed(0));
+            updateClassText('m-h2', parseFloat((data.MQ2_H2_1 + data.MQ2_H2_2 + data.MQ2_H2_3 + data.MQ4_H2_1 + data.MQ4_H2_2 + data.MQ4_H2_3 + data.MQ6_H2_1 + data.MQ6_H2_2 + data.MQ6_H2_3 + data.MQ8_H2_1 + data.MQ8_H2_2 + data.MQ8_H2_3) / 12).toFixed(0));
+            updateClassText('m-co', parseFloat((data.MQ2_CO_1 + data.MQ2_CO_2 + data.MQ2_CO_3 + data.MQ7_CO_1 + data.MQ7_CO_2 + data.MQ7_CO_3) / 6).toFixed(0));
+            updateClassText('m-co2', parseFloat((data.MG811_CO2_1 + data.MG811_CO2_2 + data.MG811_CO2_3) / 3).toFixed(0));
+            updateClassText('m-ch4', parseFloat((data.MQ2_CH4_1 + data.MQ2_CH4_2 + data.MQ2_CH4_3 + data.MQ4_CH4_1 + data.MQ4_CH4_2 + data.MQ4_CH4_3 + data.MQ9_CH4_1 + data.MQ9_CH4_2 + data.MQ9_CH4_3 + data.MQ214_CH4_1 + data.MQ214_CH4_2 + data.MQ214_CH4_3) / 12).toFixed(0));
+            updateClassText('m-c6h6', parseFloat((data.MQ3_C6H6_1 + data.MQ3_C6H6_2 + data.MQ3_C6H6_3) / 3).toFixed(0));
+            updateClassText('m-c3h8', parseFloat((data.MQ2_C3H8_1 + data.MQ2_C3H8_2 + data.MQ2_C3H8_3) / 3).toFixed(0));
+            updateClassText('m-oh', parseFloat((data.MQ3_OH_1 + data.MQ3_OH_2 + data.MQ3_OH_3) / 3).toFixed(0));
+            updateClassText('m-lpg', parseFloat((data.MQ2_LPG_1 + data.MQ2_LPG_2 + data.MQ2_LPG_3) / 3).toFixed(0));
             updateClassText('m-humid', parseFloat(data.DHT22_H).toFixed(0) + '%');
             updateClassText('m-temp', parseFloat(data.DHT22_T).toFixed(0) + '°C');
             const humidColor = humidToColor(parseFloat(data.DHT22_H).toFixed(0));

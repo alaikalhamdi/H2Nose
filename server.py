@@ -43,25 +43,24 @@ else:
     def receiving(ser):
         while True:
             global last_received
-            last_received = {k:round(random()*100) for k in ['DHT22_H', 'DHT22_T',
-                                                             'MQ2_H2_1', 'MQ2_H2_2',
-                                                             'MQ2_CH4_1', 'MQ2_CH4_2',
-                                                             'MQ2_CO_1', 'MQ2_CO_2',
-                                                             'MQ4_CH4_1', 'MQ4_CH4_2', 
-                                                             'MQ4_H2_1', 'MQ4_H2_2',
-                                                             'MQ6_H2_1', 'MQ6_H2_2', 
-                                                             'MQ7_H2_1', 'MQ7_H2_2', 
-                                                             'MQ7_CO_1', 'MQ7_CO_2', 
-                                                             'MQ8_H2_1', 'MQ8_H2_2', 
-                                                             'MQ9_CH4_1', 'MQ9_CH4_2', 
-                                                             'MQ214_CH4_1', 'MQ214_CH4_2',
-                                                             'MG811_CO2_1', 'MG811_CO2_2',
-                                                             "MQ3_C6H6_1","MQ3_C6H6_2",
-                                                             "MQ2_C3H8_1","MQ2_C3H8_2",
-                                                             "MQ3_OH_1","MQ3_OH_2",
-                                                             "MQ2_LPG_1","MQ2_LPG_2",
-                                                             'Thermocouple_1', 'Thermocouple_2', 'Thermocouple_3', 'Thermocouple_4', 'Thermocouple_5', 'Thermocouple_6', 'Thermocouple_7',
-                                                            ]}
+            last_received = {k: round(random() * 100) for k in [
+                'MQ2_H2_1', 'MQ2_H2_2', 'MQ2_H2_3',
+                'MQ2_CO_1', 'MQ2_CO_2', 'MQ2_CO_3',
+                'MQ2_CH4_1', 'MQ2_CH4_2', 'MQ2_CH4_3',
+                'MQ2_C3H8_1', 'MQ2_C3H8_2', 'MQ2_C3H8_3',
+                'MQ2_LPG_1', 'MQ2_LPG_2', 'MQ2_LPG_3',
+                'MQ3_C6H6_1', 'MQ3_C6H6_2', 'MQ3_C6H6_3',
+                'MQ3_OH_1', 'MQ3_OH_2', 'MQ3_OH_3',
+                'MQ4_H2_1', 'MQ4_H2_2', 'MQ4_H2_3',
+                'MQ4_CH4_1', 'MQ4_CH4_2', 'MQ4_CH4_3',
+                'MQ6_H2_1', 'MQ6_H2_2', 'MQ6_H2_3',
+                'MQ7_CO_1', 'MQ7_CO_2', 'MQ7_CO_3',
+                'MQ8_H2_1', 'MQ8_H2_2', 'MQ8_H2_3',
+                'MQ9_CH4_1', 'MQ9_CH4_2', 'MQ9_CH4_3',
+                'MG811_CO2_1', 'MG811_CO2_2', 'MG811_CO2_3',
+                'MQ214_CH4_1', 'MQ214_CH4_2', 'MQ214_CH4_3',
+                'DHT22_H', 'DHT22_T'
+            ]}
             last_received['t'] = round(datetime.now().timestamp() * 1000)
             last_received['Thermocouple_1'] = round(random()*1024)
             last_received['Thermocouple_2'] = round(random()*1024)
@@ -116,10 +115,10 @@ def get_wifi_name_windows():
 @app.route('/wifi')
 def get_wifi_name():
     try:
-        return get_wifi_name_linux()
+        return get_wifi_name_windows()
     except RuntimeError:
         try:
-            return get_wifi_name_windows()
+            return get_wifi_name_linux()
         except RuntimeError:
             return "Unable to determine Wi-Fi name", 500
 

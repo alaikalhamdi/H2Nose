@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="src/dataviewer.css">
 <link rel="stylesheet" href="src/base.css">
 <body>
-    <div class="main">
+    <div class="main" id="main">
         <div id="file-list-container" class="container">
             <div class="column-grid">
             </div>
@@ -18,7 +18,7 @@
             <div class="exit" id="exit" onclick="quitPrompt()">
                 <p>&#10060</p>
             </div>
-            <div class="nava" onclick="showNotif()">
+            <div class="nava" onclick="redirectSmooth('./index.html')">
                 <p>Monitor</p>
             </div>
             <div class="recordb nava" id="recordb" onclick="recordSwitch()">
@@ -109,8 +109,8 @@
         function redirectSmooth(url){
             if(animating){return;}
             animating = true;
-            document.body.style.transition = '1s';
-            document.body.style.opacity = 0;
+            document.getElementById('main').style.transition = '1s';
+            document.getElementById('main').style.opacity = 0;
             setTimeout(()=>{window.location.href = url;}, 1000);
         }
     </script>

@@ -11,7 +11,7 @@
         <p class="notificationtext">&#10003 Recording Complete</p>
         <p class="notificationdesc" id="notificationdesc">Saved as R_22-22-2025_19:34.json</p>
     </div>
-    <div class="main">
+    <div class="main" id="main">
         <div class="container">
             <div class="tray" id="tray">
                 <p class="clock" id="clock">09:23:11 AM</p>
@@ -122,7 +122,7 @@
             <div class="recordb nava" id="recordb" onclick="recordSwitch()">
                 <p id="recordbt">Record</p>
             </div>
-            <div class="nava">
+            <div class="nava" onclick="redirectSmooth('./dataviewer.html')">
                 <p>Files</p>
             </div>
             <div class="navb" onclick="closeBrowser()">

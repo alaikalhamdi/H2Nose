@@ -105,6 +105,12 @@ function getWifiInfo() {
     xhttp.send(); // Send the request
 }
 
+function redirectSmooth(url){
+    document.getElementById('main').style.transition = '1s';
+    document.getElementById('main').style.opacity = 0;
+    setTimeout(()=>{window.location.href = url;}, 1000);
+}
+
 // do the same for ip address
 function getIpAddress() {
     const xhttp = new XMLHttpRequest();

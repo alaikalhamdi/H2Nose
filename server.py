@@ -116,10 +116,10 @@ def get_wifi_name_windows():
 @app.route('/wifi')
 def get_wifi_name():
     try:
-        return get_wifi_name_windows()
+        return get_wifi_name_linux()
     except RuntimeError:
         try:
-            return get_wifi_name_linux()
+            return get_wifi_name_windows()
         except RuntimeError:
             return "Unable to determine Wi-Fi name", 500
 

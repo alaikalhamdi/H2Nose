@@ -92,3 +92,8 @@ function getRandomColor() {
     }
     return color;
 }
+
+function closeFileViewer() {
+    document.getElementById('file_viewer').classList.add('hidden');
+    document.querySelector('.darkener').classList.add('hidden');
+}

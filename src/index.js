@@ -129,11 +129,32 @@ function toggleDataViewer(method) {
         getFiles();
     }
 
+    // Add slide-out class to the current visible element
+    if (showMonitor) {
+        elements.dataviewer.classList.add("slide-out");
+        elements.dataviewer.classList.remove("slide-in");
+        elements.monitor.classList.add("slide-in");
+        elements.monitor.classList.remove("slide-out");
+        elements.thgrad.classList.add("slide-in");
+        elements.thgrad.classList.remove("slide-out");
+    } else {
+        elements.monitor.classList.add("slide-out");
+        elements.monitor.classList.remove("slide-in");
+        elements.dataviewer.classList.add("slide-in");
+        elements.dataviewer.classList.remove("slide-out");
+        elements.thgrad.classList.add("slide-out");
+        elements.thgrad.classList.remove("slide-in");
+    }
+
+    // Hide the element after the animation completes
+    setTimeout(() => {
+        elements.monitor.classList.toggle("hidden", !showMonitor);
+        elements.dataviewer.classList.toggle("hidden", !showDataViewer);
+        elements.thgrad.classList.toggle("hidden", !showMonitor);
+    }, 500);
+
     elements.tray.style.marginBottom = showMonitor ? "-20px" : "10px";
-    elements.monitor.style.display = showMonitor ? "block" : "none";
-    elements.thgrad.style.display = showMonitor ? "block" : "none";
     elements.detailed.style.display = "none";
-    elements.dataviewer.style.display = showDataViewer ? "block" : "none";
     elements.navmonitorbutton.classList.toggle("navactive", showMonitor);
     elements.navfilebutton.classList.toggle("navactive", showDataViewer);
 }

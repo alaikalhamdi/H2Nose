@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 button.addEventListener('click', () => {
                     const meta = gasSensorChart.getDatasetMeta(index);
                     meta.hidden = !meta.hidden;
+                    button.style.backgroundColor = meta.hidden ? 'gray' : dataset.borderColor;
                     gasSensorChart.update();
                 });
                 buttonContainer.appendChild(button);

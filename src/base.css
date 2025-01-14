@@ -241,7 +241,7 @@ body {
 
 .column-grid{
     overflow: auto;
-    max-height: 60%;
+    height: 60%;
 
     background-color: #222;
     color: aliceblue;

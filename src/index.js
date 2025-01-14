@@ -116,16 +116,19 @@ function toggleDataViewer() {
     const monitor = document.getElementById("monitor");
     const thgrad = document.getElementById("thgrad");
     const dataviewer = document.getElementById("dataviewer");
+    const detailed = document.getElementById("detailed");
 
     if (dataviewer.style.display === "block") {
         tray.style.marginBottom = "-20px";
         monitor.style.display = "block";
         thgrad.style.display = "block";
+        detailed.style.display = "none";
         dataviewer.style.display = "none";
     } else {
         tray.style.marginBottom = "10px";
         monitor.style.display = "none";
         thgrad.style.display = "none";
+        detailed.style.display = "none";
         dataviewer.style.display = "block";
     }
 }

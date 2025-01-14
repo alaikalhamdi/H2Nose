@@ -245,7 +245,9 @@ getDeleteFunction = (i, f)=>{
 }
 
 getRedirectFunction = (i) => {
-    return ()=>{if(animating){return};animating=true;window.location.href = 'http://127.0.0.1/view/'+i;}
+    return ()=>{
+        showDataViewer(i);
+    }
 }
 
 setInterval(() => {

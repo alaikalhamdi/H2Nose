@@ -1,4 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
+let gasSensorChart;
+
+function showDataViewer(filename) {
     const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
@@ -39,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             const ctx = document.getElementById('filegraph').getContext('2d');
-            const gasSensorChart = new Chart(ctx, {
+            gasSensorChart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: timestamps,
@@ -78,22 +80,45 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 buttonContainer.appendChild(button);
             });
+
+            // change the title to the filename
+            document.getElementById('file_viewer').setAttribute('data-filename', filename);
+            document.getElementById('file_viewer').querySelector('h2').textContent = filename;
+            document.getElementById('file_viewer').classList.remove('hidden');
+            document.querySelector('.darkener').classList.remove('hidden');
         }
     };
-    xhttp.open("GET", "http://127.0.0.1/f/get?fn=R_15-1-2025_00-30-44.json", true);
+    xhttp.open("GET", "http://127.0.0.1/f/get?fn=" + filename, true);
     xhttp.send();
-});
-
-function getRandomColor() {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
+};
 
 function closeFileViewer() {
     document.getElementById('file_viewer').classList.add('hidden');
     document.querySelector('.darkener').classList.add('hidden');
+    if (gasSensorChart) {
+        gasSensorChart.destroy();
+    }
+    const buttonContainer = document.getElementById('buttonContainer');
+    while (buttonContainer.firstChild) {
+        buttonContainer.removeChild(buttonContainer.firstChild);
+    }
+}
+
+function deleteFile() {
+    const filename = document.getElementById('file_viewer').getAttribute('data-filename');
+    if (confirm('Are you sure you want to delete ' + filename + '?')) {
+        const xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4) {
+                if (this.status === 200) {
+                    closeFileViewer();
+                    getFiles();
+                } else {
+                    alert('Failed to remove ' + filename);
+                }
+            }
+        };
+        xhttp.open('GET', 'http://127.0.0.1/f/del?fn=' + filename, true);
+        xhttp.send();
+    }
 }

@@ -29,20 +29,32 @@ function updateChart(chart, data, time) {
         "OH" : parseFloat((data.MQ3_OH_1 + data.MQ3_OH_2 + data.MQ3_OH_3) / 3).toFixed(0),
         "LPG" : parseFloat((data.MQ2_LPG_1 + data.MQ2_LPG_2 + data.MQ2_LPG_3) / 3).toFixed(0),
     }
-    chart.data.labels.push(timerecord(parseInt(time)));
-    if (chart.data.labels.length > 11) {
-        if (!recording) {
-            chart.data.labels.shift();
-        }
-    }
     chart.data.datasets.forEach((dataset) => {
         dataset.data.push(chartData[dataset.label]);
-        if (dataset.data.length > 10) {
+        if (dataset.data.length === 11) {
             if (!recording) {
             dataset.data.shift();
             }
+        } else if (dataset.data.length > 11) {
+            if (!recording) {
+                dataset.data.shift();
+                dataset.data.shift();
+                dataset.data.shift();
+            }
         }
     });
+    chart.data.labels.push(timerecord(parseInt(time)));
+    if (chart.data.labels.length === 12) {
+        if (!recording) {
+            chart.data.labels.shift();
+        }
+    } else if (chart.data.labels.length > 12) {
+        if (!recording) {
+            chart.data.labels.shift();
+            chart.data.labels.shift();
+            chart.data.labels.shift();
+        }
+    }
     chart.update();
 }
 

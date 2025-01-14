@@ -111,6 +111,25 @@ function redirectSmooth(url){
     setTimeout(()=>{window.location.href = url;}, 1000);
 }
 
+function toggleDataViewer() {
+    const tray = document.getElementById("tray");
+    const monitor = document.getElementById("monitor");
+    const thgrad = document.getElementById("thgrad");
+    const dataviewer = document.getElementById("dataviewer");
+
+    if (dataviewer.style.display === "block") {
+        tray.style.marginBottom = "-20px";
+        monitor.style.display = "block";
+        thgrad.style.display = "block";
+        dataviewer.style.display = "none";
+    } else {
+        tray.style.marginBottom = "10px";
+        monitor.style.display = "none";
+        thgrad.style.display = "none";
+        dataviewer.style.display = "block";
+    }
+}
+
 // do the same for ip address
 function getIpAddress() {
     const xhttp = new XMLHttpRequest();
@@ -125,6 +144,77 @@ function getIpAddress() {
         ipAddress = "Null";
     };
     xhttp.send(); // Send the request
+}
+
+// DATAVIEWER SCRIPTS
+
+template = document.createElement('div');
+
+file = document.createElement('div')
+file.classList.add('file');
+
+tools = document.createElement('div');
+trash = document.createElement('img');
+trash.src = './src/TrashCan.svg';
+tools.append(trash)
+tools.classList.add('tools');
+
+template.append(file);
+template.append(tools);
+
+animating = false;
+
+document.addEventListener('DOMContentLoaded', ()=>{
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            files = JSON.parse(xhttp.responseText);
+            filelist = document.getElementsByClassName('column-grid')[0];
+            let keys = Object.keys(files).sort().reverse();
+            for(i of keys){
+                file = template.cloneNode(true);
+                file.childNodes[0].textContent = i;
+                file.childNodes[0].title = i;
+                file.childNodes[0].addEventListener('click', getRedirectFunction(i));
+                file.childNodes[1].childNodes[0].addEventListener('click', getDeleteFunction(i, file));
+                filelist.append(file);
+            }
+            if(keys.length == 0){
+                notfound = document.createElement('h1');
+                notfound.textContent = 'No Files Found';
+                filelist.replaceWith(notfound);
+            }
+        }
+    }
+    xhttp.open('GET', 'http://127.0.0.1/f/names', true);
+    xhttp.send();
+    document.body.style.opacity = 1;
+    setTimeout(()=>{
+        document.body.style.transition = '0s';
+    }, 1000);
+});
+
+getDeleteFunction = (i, f)=>{
+    return (()=>{
+        if(confirm('Delete '+i+'?')){
+            delhttp = new XMLHttpRequest();
+            delhttp.onreadystatechange = function() {
+                if (this.readyState == 4) {
+                    if(this.status == 200){
+                        f.remove();
+                    } else if (this.status == 404){
+                        alert('Failed to remove '+i);
+                    }
+                } 
+            }
+            delhttp.open('GET', '/f/del?fn='+i);
+            delhttp.send();
+        }
+    })
+}
+
+getRedirectFunction = (i) => {
+    return ()=>{if(animating){return};animating=true;window.location.href = './view/'+i;}
 }
 
 setInterval(() => {

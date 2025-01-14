@@ -97,6 +97,10 @@
                     </div>
                 </div>
             </div>
+            <div class="dataviewer" id="dataviewer">
+                <div class="column-grid">
+                </div>
+            </div>
             <div class="thgrad" id="thgrad"> <!-- THDIV Gradient Helper --> <!-- Color Gradient -->
                 <div class="temphum"> <!-- Temperature and Humidity --> <!-- Monochrome Gradient -->
                     <div class="thchild" id="temp">
@@ -116,13 +120,13 @@
             <div class="exit" id="exit" onclick="quitPrompt()">
                 <p>&#10060</p>
             </div>
-            <div class="navactive nava" onclick="showNotif()">
+            <div class="navactive nava" onclick="toggleDataViewer()">
                 <p>Monitor</p>
             </div>
             <div class="recordb nava" id="recordb" onclick="recordSwitch()">
                 <p id="recordbt">Record</p>
             </div>
-            <div class="nava" onclick="redirectSmooth('./dataviewer.html')">
+            <div class="nava" onclick="toggleDataViewer()">
                 <p>Files</p>
             </div>
             <div class="navb" onclick="closeBrowser()">

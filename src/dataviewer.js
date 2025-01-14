@@ -6,14 +6,14 @@ document.addEventListener('DOMContentLoaded', function() {
             const timestamps = jsonData.data.map(entry => entry.t);
 
             const datasets = [
-                { label: 'H2', data: [], borderColor: getRandomColor(), fill: false, tension: 0.1 },
-                { label: 'CO', data: [], borderColor: getRandomColor(), fill: false, tension: 0.1 },
-                { label: 'CO2', data: [], borderColor: getRandomColor(), fill: false, tension: 0.1 },
-                { label: 'CH4', data: [], borderColor: getRandomColor(), fill: false, tension: 0.1 },
-                { label: 'C6H6', data: [], borderColor: getRandomColor(), fill: false, tension: 0.1 },
-                { label: 'C3H8', data: [], borderColor: getRandomColor(), fill: false, tension: 0.1 },
-                { label: 'OH', data: [], borderColor: getRandomColor(), fill: false, tension: 0.1 },
-                { label: 'LPG', data: [], borderColor: getRandomColor(), fill: false, tension: 0.1 }
+                { label: 'H2', data: [], fill: false, tension: 0.1 },
+                { label: 'CO', data: [], fill: false, tension: 0.1 },
+                { label: 'CO2', data: [], fill: false, tension: 0.1 },
+                { label: 'CH4', data: [], fill: false, tension: 0.1 },
+                { label: 'C6H6', data: [], fill: false, tension: 0.1 },
+                { label: 'C3H8', data: [], fill: false, tension: 0.1 },
+                { label: 'OH', data: [], fill: false, tension: 0.1 },
+                { label: 'LPG', data: [], fill: false, tension: 0.1 }
             ];
 
             jsonData.data.forEach(data => {
@@ -53,8 +53,29 @@ document.addEventListener('DOMContentLoaded', function() {
                                 unit: 'second'
                             }
                         }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
                     }
                 }
+            });
+
+            // Create buttons for each dataset
+            const buttonContainer = document.getElementById('buttonContainer');
+            datasets.forEach((dataset, index) => {
+                const button = document.createElement('button');
+                button.textContent = dataset.label;
+                button.style.backgroundColor = dataset.borderColor;
+                button.style.color = 'white';
+                button.style.margin = '5px';
+                button.addEventListener('click', () => {
+                    const meta = gasSensorChart.getDatasetMeta(index);
+                    meta.hidden = !meta.hidden;
+                    gasSensorChart.update();
+                });
+                buttonContainer.appendChild(button);
             });
         }
     };

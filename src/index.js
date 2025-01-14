@@ -117,6 +117,8 @@ function toggleDataViewer() {
     const thgrad = document.getElementById("thgrad");
     const dataviewer = document.getElementById("dataviewer");
     const detailed = document.getElementById("detailed");
+    const navmonitorbutton = document.getElementById("navmonitorbutton");
+    const navfilebutton = document.getElementById("navfilebutton");
 
     if (dataviewer.style.display === "block") {
         tray.style.marginBottom = "-20px";
@@ -124,12 +126,16 @@ function toggleDataViewer() {
         thgrad.style.display = "block";
         detailed.style.display = "none";
         dataviewer.style.display = "none";
+        navmonitorbutton.classList.add("navactive");
+        navfilebutton.classList.remove("navactive");
     } else {
         tray.style.marginBottom = "10px";
         monitor.style.display = "none";
         thgrad.style.display = "none";
         detailed.style.display = "none";
         dataviewer.style.display = "block";
+        navmonitorbutton.classList.remove("navactive");
+        navfilebutton.classList.add("navactive");
     }
 }
 

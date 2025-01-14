@@ -212,7 +212,7 @@ def file_names():
         return '{}'
     return json.dumps({i:os.stat('saves/'+i)for i in os.listdir('saves')})
 
-@app.route('/f/get')
+@app.route('/f/get', methods=['GET'])
 def file_get():
     if request.args['fn'] in os.listdir('saves'):
         return open('saves/'+request.args['fn']).read()

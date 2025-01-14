@@ -3,6 +3,8 @@
 ## Overview
 H2Nose is a tool used to check the Gasifier's effectiveness in producing Syngas from biomass pellets. This repository is mainly for the UI of H2nose. For the C++ library for H2Nose, refer to this [H2NoseLib3](https://github.com/ivanaprianto/H2NoseLib3) library, which is used for the arduino in H2Nose.
 
+This is the simplified, easier-to-navigate, better, cooler version of [H2E Visual](https://github.com/alaikalhamdi/H2E_Visual). It's practically a remake, because I barely copied anything from the old UI. I don't know if this will make any differences but I did this for better documentation, easier development and it's definitely going to be easier now than that old messy piece of junk.
+
 ## Features
 - H2Nose can monitor these gases in realtime:
     - Hydrogen (H2)

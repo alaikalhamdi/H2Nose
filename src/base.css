@@ -10,7 +10,7 @@ body {
 /* Divisions */
 
 .darkener {
-    display: none;
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
@@ -18,6 +18,49 @@ body {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
     z-index: 1;
+}
+
+.file_viewer_parent {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.file_viewer {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: auto;
+    width: 90%;
+    height: 80%;
+    background-color: #222;
+    border-radius: 10px;
+    padding: 20px;
+    color: aliceblue;
+}
+
+.filegraph {
+    color: white;
+}
+
+.filetool {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    position: absolute;
+    bottom: 20px;
+
+    height: 100px;
+    width: calc(100% - 36px);
+
+    border-radius: 10px;
+
+    background-color: #333;
 }
 
 .main {
@@ -54,6 +97,8 @@ body {
     border-radius: 10px;
 
     transition: right 0.2s;
+
+    z-index: 3;
 }
 
 .tray {
@@ -205,6 +250,44 @@ body {
 
 /* Button and Components */
 
+.filetoolbutton {
+    height: 100%;
+    width: 30%;
+
+    border: none;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-size: 35px;
+
+    background-color: #333;
+}
+
+.deletefile {
+    color: red;
+}
+
+.button-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.button-container button {
+    padding: 20px 40px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    font-size: 20px;
+}
+
 .viewmore {
     display: flex;
     justify-content: center;
@@ -262,6 +345,15 @@ body {
 }
 
 /* Fonts and Texts */
+
+.fileviewertitle {
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+    text-align: center;
+
+    margin-top: 20px;
+}
 
 .title {
     font-family: "Inter", sans-serif;

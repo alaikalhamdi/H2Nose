@@ -1,4 +1,5 @@
 <script src="src/chart.min.js"></script>
+<script src="src/chart-adapter.min.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -6,10 +7,24 @@
     <link href="src/fonts.css" rel="stylesheet">
 </head>
 <body>
-    <div class="darkener"></div>
+    <div class="darkener hidden"></div>
     <div class="notification" id="notification" onclick="showNotif()">
         <p class="notificationtext">&#10003 Recording Complete</p>
         <p class="notificationdesc" id="notificationdesc">Saved as R_22-22-2025_19:34.json</p>
+    </div>
+    <div class="file_viewer_parent hidden" id="file_viewer">
+        <div class="file_viewer">
+            <h2 class="fileviewertitle">R_15-1-2025_00-30-44.json</h1>
+            <div class="filegraph">
+                <canvas id="filegraph"></canvas>
+            </div>
+            <div id="buttonContainer" class="button-container"></div>
+            <div class="filetool">
+                <div class="filetoolbutton" onclick="closeFileViewer()">Close</div>
+                <div class="filetoolbutton" onclick="renameFile()">Rename</div>
+                <div class="filetoolbutton deletefile" onclick="deleteFile()">Delete</div>
+            </div>
+        </div>
     </div>
     <div class="main" id="main">
         <div class="container">
@@ -140,4 +155,5 @@
     <script src="src/index.js"></script>
     <script src="src/monitoring.js"></script>
     <script src="src/recording.js"></script>
+    <script src="src/dataviewer.js"></script>
 </body>

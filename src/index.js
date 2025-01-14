@@ -111,32 +111,31 @@ function redirectSmooth(url){
     setTimeout(()=>{window.location.href = url;}, 1000);
 }
 
-function toggleDataViewer() {
-    const tray = document.getElementById("tray");
-    const monitor = document.getElementById("monitor");
-    const thgrad = document.getElementById("thgrad");
-    const dataviewer = document.getElementById("dataviewer");
-    const detailed = document.getElementById("detailed");
-    const navmonitorbutton = document.getElementById("navmonitorbutton");
-    const navfilebutton = document.getElementById("navfilebutton");
+function toggleDataViewer(method) {
+    const elements = {
+        tray: document.getElementById("tray"),
+        monitor: document.getElementById("monitor"),
+        thgrad: document.getElementById("thgrad"),
+        dataviewer: document.getElementById("dataviewer"),
+        detailed: document.getElementById("detailed"),
+        navmonitorbutton: document.getElementById("navmonitorbutton"),
+        navfilebutton: document.getElementById("navfilebutton")
+    };
 
-    if (dataviewer.style.display === "block") {
-        tray.style.marginBottom = "-20px";
-        monitor.style.display = "block";
-        thgrad.style.display = "block";
-        detailed.style.display = "none";
-        dataviewer.style.display = "none";
-        navmonitorbutton.classList.add("navactive");
-        navfilebutton.classList.remove("navactive");
-    } else {
-        tray.style.marginBottom = "10px";
-        monitor.style.display = "none";
-        thgrad.style.display = "none";
-        detailed.style.display = "none";
-        dataviewer.style.display = "block";
-        navmonitorbutton.classList.remove("navactive");
-        navfilebutton.classList.add("navactive");
+    const showMonitor = method === "monitor";
+    const showDataViewer = method === "dataviewer";
+
+    if (showDataViewer) {
+        getFiles();
     }
+
+    elements.tray.style.marginBottom = showMonitor ? "-20px" : "10px";
+    elements.monitor.style.display = showMonitor ? "block" : "none";
+    elements.thgrad.style.display = showMonitor ? "block" : "none";
+    elements.detailed.style.display = "none";
+    elements.dataviewer.style.display = showDataViewer ? "block" : "none";
+    elements.navmonitorbutton.classList.toggle("navactive", showMonitor);
+    elements.navfilebutton.classList.toggle("navactive", showDataViewer);
 }
 
 // do the same for ip address
@@ -173,35 +172,37 @@ template.append(tools);
 
 animating = false;
 
-document.addEventListener('DOMContentLoaded', ()=>{
-    xhttp = new XMLHttpRequest();
+function getFiles() {
+    const xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            files = JSON.parse(xhttp.responseText);
-            filelist = document.getElementsByClassName('column-grid')[0];
+            const files = JSON.parse(xhttp.responseText);
+            const filelist = document.getElementsByClassName('column-grid')[0];
+            
+            // Clear existing file divs
+            while (filelist.firstChild) {
+                filelist.removeChild(filelist.firstChild);
+            }
+
             let keys = Object.keys(files).sort().reverse();
-            for(i of keys){
-                file = template.cloneNode(true);
+            for (let i of keys) {
+                const file = template.cloneNode(true);
                 file.childNodes[0].textContent = i;
                 file.childNodes[0].title = i;
                 file.childNodes[0].addEventListener('click', getRedirectFunction(i));
                 file.childNodes[1].childNodes[0].addEventListener('click', getDeleteFunction(i, file));
                 filelist.append(file);
             }
-            if(keys.length == 0){
-                notfound = document.createElement('h1');
+            if (keys.length == 0) {
+                const notfound = document.createElement('h1');
                 notfound.textContent = 'No Files Found';
                 filelist.replaceWith(notfound);
             }
         }
-    }
+    };
     xhttp.open('GET', 'http://127.0.0.1/f/names', true);
     xhttp.send();
-    document.body.style.opacity = 1;
-    setTimeout(()=>{
-        document.body.style.transition = '0s';
-    }, 1000);
-});
+}
 
 getDeleteFunction = (i, f)=>{
     return (()=>{
@@ -216,7 +217,7 @@ getDeleteFunction = (i, f)=>{
                     }
                 } 
             }
-            delhttp.open('GET', '/f/del?fn='+i);
+            delhttp.open('GET', 'http://127.0.0.1/f/del?fn='+i);
             delhttp.send();
         }
     })

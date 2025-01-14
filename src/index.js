@@ -36,14 +36,14 @@ function viewMore() {
     const monitor = document.getElementById("monitor");
     const tray = document.getElementById("tray");
 
-    if (detailed.style.display === "block") {
-        detailed.style.display = "none";
-        monitor.style.display = "block";
-        tray.style.marginBottom = "-20px";
-    } else {
-        detailed.style.display = "block";
-        monitor.style.display = "none";
+    if (detailed.classList.contains("hidden")) {
+        detailed.classList.remove("hidden");
+        monitor.classList.add("hidden");
         tray.style.marginBottom = "10px";
+    } else {
+        detailed.classList.add("hidden");
+        monitor.classList.remove("hidden");
+        tray.style.marginBottom = "-20px";
     }
 }
 
@@ -154,7 +154,7 @@ function toggleDataViewer(method) {
     }, 500);
 
     elements.tray.style.marginBottom = showMonitor ? "-20px" : "10px";
-    elements.detailed.style.display = "none";
+    elements.detailed.classList.add("hidden");
     elements.navmonitorbutton.classList.toggle("navactive", showMonitor);
     elements.navfilebutton.classList.toggle("navactive", showDataViewer);
 }

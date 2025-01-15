@@ -199,9 +199,9 @@ def record_stop():
         fn = f"{name}_{num}.json"
         num += 1
 
-    recorded_data = {'time_finished': datetime.now().timestamp() * 1000, 'data': recorded_data}
+    data_to_save = {'time_finished': datetime.now().timestamp() * 1000, 'data': recorded_data}
     with open(os.path.join('saves', fn), 'w') as f:
-        json.dump(recorded_data, f)
+        json.dump(data_to_save, f)
 
     recorded_data = []
     return fn
